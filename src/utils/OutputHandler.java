@@ -5,6 +5,7 @@ package utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import data.Notification;
 import engine.PlatformEngine;
 import data.Movie;
 import data.User;
@@ -158,6 +159,19 @@ public final class OutputHandler {
       ratedMoviesOutput.add(movieObjectNode);
     }
     userObjectNode.set("ratedMovies", ratedMoviesOutput);
+
+    // add rated movies
+    ArrayNode notificationsOutput = mapper.createArrayNode();
+    ArrayList<Notification> notifications = user.getNotifications();
+    for (Notification notification : notifications) {
+      ObjectNode notificationObjectNode = mapper.createObjectNode();
+
+      notificationObjectNode.put("movieName", notification.getMovieName());
+      notificationObjectNode.put("message", notification.getMessage());
+
+      notificationsOutput.add(notificationObjectNode);
+    }
+    userObjectNode.set("notifications", notificationsOutput);
 
     // return the created userObjectNode
     return userObjectNode;

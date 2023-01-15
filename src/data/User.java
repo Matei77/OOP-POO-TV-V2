@@ -24,6 +24,7 @@ public final class User {
   private ArrayList<Movie> watchedMovies;
   private ArrayList<Movie> likedMovies;
   private ArrayList<Movie> ratedMovies;
+  private ArrayList<Notification> notifications;
 
   /**
    * Constructor for new user.
@@ -45,6 +46,7 @@ public final class User {
     watchedMovies = new ArrayList<>();
     likedMovies = new ArrayList<>();
     ratedMovies = new ArrayList<>();
+    notifications = new ArrayList<>();
   }
 
   public String getName() {
@@ -133,5 +135,13 @@ public final class User {
 
   public void setRatedMovies(final ArrayList<Movie> ratedMovies) {
     this.ratedMovies = ratedMovies;
+  }
+
+  public ArrayList<Notification> getNotifications() {
+    return notifications;
+  }
+
+  public void setNotifications(final ArrayList<Notification> notifications) {
+    this.notifications = notifications;
   }
 }
