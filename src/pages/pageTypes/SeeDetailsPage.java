@@ -29,37 +29,43 @@ import static utils.Constants.UPGRADES_PAGE;
  */
 public final class SeeDetailsPage extends LoggedInHomepage {
   @Override
-  public void changePage(final String nextPage) {
+  public int changePage(final String nextPage) {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(UPGRADES_PAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(UPGRADES_PAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(MOVIES_PAGE)) {
       gotoMovies();
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(LOGOUT_PAGE)) {
       logout();
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(SEE_DETAILS_PAGE)) {
-      return;
+      return SUCCESS_STATUS;
     }
 
     // output in case of error
     OutputHandler.updateOutput(ERROR_STATUS);
+    return ERROR_STATUS;
+  }
+
+  @Override
+  public String getPageName() {
+    return SEE_DETAILS_PAGE;
   }
 
   @Override

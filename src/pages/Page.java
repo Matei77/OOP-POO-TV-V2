@@ -16,8 +16,9 @@ public interface Page {
    *
    * @param nextPage the page to go to
    */
-  default void changePage(String nextPage) {
+  default int changePage(String nextPage) {
     OutputHandler.updateOutput(ERROR_STATUS);
+    return ERROR_STATUS;
   }
 
   /**
@@ -103,4 +104,6 @@ public interface Page {
   default void subscribe() {
     OutputHandler.updateOutput(ERROR_STATUS);
   }
+
+  public String getPageName();
 }

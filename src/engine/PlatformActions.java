@@ -4,6 +4,9 @@ package engine;
 
 import input.ActionInput;
 import pages.Page;
+import pages.changePageCommand.ChangePageCommand;
+import pages.changePageCommand.ChangePageInvoker;
+import pages.changePageCommand.Command;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -31,7 +34,8 @@ public final class PlatformActions {
 
       String type = action.getType();
       if (type.equals(CHANGE_PAGE)) {
-        currentPage.changePage(action.getPage());
+        Command changePageCommand = new ChangePageCommand();
+        PlatformEngine.getEngine().getChangePageInvoker().execute(changePageCommand);
 
       } else if (type.equals(ON_PAGE)) {
         String feature = action.getFeature();
@@ -59,7 +63,7 @@ public final class PlatformActions {
           default -> { }
         }
       } else if (type.equals(BACK_TYPE)) {
-
+        PlatformEngine.getEngine().getChangePageInvoker().undo();
       }
     }
     if (PlatformEngine.getEngine().getCurrentUser() != null) {

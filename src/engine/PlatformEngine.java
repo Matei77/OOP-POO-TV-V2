@@ -7,6 +7,7 @@ import input.Input;
 import data.Movie;
 import data.User;
 import pages.Page;
+import pages.changePageCommand.ChangePageInvoker;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public final class PlatformEngine {
   private User currentUser;
   private ArrayList<Movie> currentMoviesList;
   private Page currentPage;
+
+  private ChangePageInvoker changePageInvoker;
 
 
   private PlatformEngine() { }
@@ -105,5 +108,13 @@ public final class PlatformEngine {
 
   public void setCurrentPage(final Page currentPage) {
     this.currentPage = currentPage;
+  }
+
+  public ChangePageInvoker getChangePageInvoker() {
+    return changePageInvoker;
+  }
+
+  public void setChangePageInvoker(final ChangePageInvoker changePageInvoker) {
+    this.changePageInvoker = changePageInvoker;
   }
 }

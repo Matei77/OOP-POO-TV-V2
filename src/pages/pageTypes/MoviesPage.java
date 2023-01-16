@@ -25,41 +25,46 @@ import static utils.Constants.SUCCESS_STATUS;
 public final class MoviesPage extends LoggedInHomepage {
 
   @Override
-  public void changePage(final String nextPage) {
+  public int changePage(final String nextPage) {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(SEE_DETAILS_PAGE)) {
-      seeDetails();
-      return;
+      return seeDetails();
     }
 
     if (nextPage.equals(LOGOUT_PAGE)) {
       logout();
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(MOVIES_PAGE)) {
       gotoMovies();
-      return;
+      return SUCCESS_STATUS;
     }
 
     // output in case of error
     OutputHandler.updateOutput(ERROR_STATUS);
+    return ERROR_STATUS;
   }
 
-  private void seeDetails() {
+  @Override
+  public String getPageName() {
+    return MOVIES_PAGE;
+  }
+
+  private int seeDetails() {
     // check if the selected movie exists in the CurrentMoviesList
     String selectedMovieName = PlatformActions.getCurrentAction().getMovie();
     Movie selectedMovie = Utils.findMovie(selectedMovieName);
     if (selectedMovie == null) {
       OutputHandler.updateOutput(ERROR_STATUS);
-      return;
+      return ERROR_STATUS;
     }
 
     // update the currentMoviesList
@@ -75,6 +80,7 @@ public final class MoviesPage extends LoggedInHomepage {
 
     // output results
     OutputHandler.updateOutput(SUCCESS_STATUS);
+    return SUCCESS_STATUS;
   }
 
   @Override
