@@ -27,7 +27,6 @@ public class ChangePageInvoker {
   public void undo() {
     if (history.isEmpty()) {
       OutputHandler.updateOutput(ERROR_STATUS);
-      // System.out.println("undo error");
       return;
     }
 
