@@ -3,6 +3,7 @@
 package pages.pageTypes;
 
 import data.Movie;
+import data.Rating;
 import data.User;
 import engine.PlatformActions;
 import engine.PlatformEngine;
@@ -189,8 +190,18 @@ public final class SeeDetailsPage extends LoggedInHomepage {
       ArrayList<Movie> ratedMovies = currentUser.getRatedMovies();
       ratedMovies.add(selectedMovie);
       currentUser.setRatedMovies(ratedMovies);
+      Rating newRating = new Rating(currentUser, currentAction.getRate());
+      selectedMovie.updateRating(newRating);
 
-      selectedMovie.updateRating(currentAction.getRate());
+    } else {
+      ArrayList<Rating> ratings = selectedMovie.getRatings();
+      for (Rating rating : ratings) {
+        if (rating.getUser().equals(currentUser)) {
+          rating.setRating(currentAction.getRate());
+          break;
+        }
+      }
+      selectedMovie.recalculateRating();
     }
 
     // output the results

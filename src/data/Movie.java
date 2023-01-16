@@ -22,7 +22,7 @@ public final class Movie {
   private int numLikes = INITIAL_LIKES;
   private double rating = INITIAL_RATING;
   private int numRatings = INITIAL_NUM_RATINGS;
-  private final ArrayList<Integer> ratings = new ArrayList<>();
+  private ArrayList<Rating> ratings = new ArrayList<>();
 
 
   /**
@@ -51,16 +51,20 @@ public final class Movie {
    *
    * @param newRating a new rating from a user for the movie.
    */
-  public void updateRating(final int newRating) {
-    double ratingSum = 0;
+  public void updateRating(final Rating newRating) {
     ratings.add(newRating);
+    numRatings++;
 
-    for (Integer userRating : ratings) {
-      ratingSum += userRating;
+    recalculateRating();
+  }
+
+  public void recalculateRating() {
+    double ratingSum = 0;
+    for (Rating userRating : this.ratings) {
+      ratingSum += userRating.getRating();
     }
 
-    numRatings++;
-    rating = ratingSum / numRatings;
+    this.rating = ratingSum / this.numRatings;
   }
 
   public String getName() {
@@ -135,4 +139,11 @@ public final class Movie {
     this.numRatings = numRatings;
   }
 
+  public ArrayList<Rating> getRatings() {
+    return ratings;
+  }
+
+  public void setRatings(final ArrayList<Rating> ratings) {
+    this.ratings = ratings;
+  }
 }
