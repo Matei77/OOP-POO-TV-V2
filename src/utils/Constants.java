@@ -53,6 +53,8 @@ public final class Constants {
 
   public static final String ADD_MESSAGE = "ADD";
   public static final String DELETE_MESSAGE = "DELETE";
+  public static final String NO_RECOMMENDATION_MESSAGE = "No recommendation";
+  public static final String RECOMMENDATION_MESSAGE = "Recommendation";
 
   private Constants() { }
 }

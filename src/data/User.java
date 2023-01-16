@@ -2,6 +2,11 @@
 
 package data;
 
+import engine.PlatformEngine;
+import utils.OutputHandler;
+import utils.comparators.LikedGenreComparator;
+import utils.comparators.LikesMovieComparator;
+
 import java.util.ArrayList;
 
 import static utils.Constants.*;
@@ -88,7 +93,51 @@ public final class User {
   }
 
   public void giveRecommendation() {
+    Movie recommendedMovie = new Movie(NO_RECOMMENDATION_MESSAGE, "", 0, null,
+        null, null);
 
+    ArrayList<String> genres = new ArrayList<>();
+    for (Movie movie : this.likedMovies) {
+      genres.addAll(movie.getGenres());
+    }
+
+    ArrayList<LikedGenre> likedGenres = new ArrayList<>();
+    for (String genre : genres) {
+      LikedGenre likedGenre = new LikedGenre(genre);
+      likedGenres.add(likedGenre);
+    }
+
+    for (Movie movie : this.likedMovies) {
+      for (LikedGenre likedGenre : likedGenres) {
+        for (String genre : movie.getGenres()) {
+          if (genre.equals(likedGenre.getName())) {
+            likedGenre.setLikes(likedGenre.getLikes() + 1);
+          }
+        }
+      }
+    }
+    LikedGenreComparator genreComparator = new LikedGenreComparator();
+    likedGenres.sort(genreComparator);
+
+
+    ArrayList<Movie> sortedLikedMovies =
+        new ArrayList<>(PlatformEngine.getEngine().getMoviesDatabase());
+    LikesMovieComparator movieComparator = new LikesMovieComparator();
+
+    sortedLikedMovies.sort(movieComparator);
+
+    for (LikedGenre genre : likedGenres) {
+      for (Movie movie : sortedLikedMovies) {
+        if (movie.getGenres().contains(genre.getName()) && !this.watchedMovies.contains(movie)) {
+          recommendedMovie = movie;
+          break;
+        }
+      }
+    }
+
+    Notification notification = new Notification(recommendedMovie, RECOMMENDATION_MESSAGE);
+    this.notifications.add(notification);
+    OutputHandler.finalNotification();
   }
 
   public String getName() {

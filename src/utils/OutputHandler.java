@@ -63,6 +63,25 @@ public final class OutputHandler {
     output.addAll(List.of(outputNode));
   }
 
+  public static void finalNotification() {
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectNode outputNode = mapper.createObjectNode();
+
+    outputNode.set("error", null);
+
+    outputNode.set("currentMoviesList", null);
+
+    // add current user to output
+    User currentUser = PlatformEngine.getEngine().getCurrentUser();
+    ObjectNode currentUsersOutput = createUserOutput(mapper, currentUser);
+
+    outputNode.set("currentUser", currentUsersOutput);
+
+    // update the final output
+    ArrayNode output = PlatformEngine.getEngine().getOutput();
+    output.addAll(List.of(outputNode));
+  }
+
   private static ObjectNode createMovieOutput(final ObjectMapper mapper, final Movie movie) {
 
     // create the output for a movie
