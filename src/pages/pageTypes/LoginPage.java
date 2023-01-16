@@ -53,9 +53,11 @@ public final class LoginPage implements Page {
     CredentialsInput credentials = PlatformActions.getCurrentAction().getCredentials();
     User loginUser = Utils.findUser(credentials.getName());
 
+    PageFactory pageFactory = new PageFactory();
+
     // check if the user doesn't exist or his password doesn't match
     if (loginUser == null || !loginUser.getPassword().equals(credentials.getPassword())) {
-      PlatformEngine.getEngine().setCurrentPage(new LoggedOutHomepage());
+      PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_OUT_HOMEPAGE));
       OutputHandler.updateOutput(ERROR_STATUS);
       return;
     }
@@ -64,7 +66,6 @@ public final class LoginPage implements Page {
     PlatformEngine.getEngine().setCurrentUser(loginUser);
 
     // change the current page
-    PageFactory pageFactory = new PageFactory();
     PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
 
     // output results
