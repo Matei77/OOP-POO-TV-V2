@@ -190,4 +190,25 @@ public final class SeeDetailsPage extends LoggedInHomepage {
     // output the results
     OutputHandler.updateOutput(SUCCESS_STATUS);
   }
+
+  @Override
+  public void subscribe() {
+    ActionInput currentAction = PlatformActions.getCurrentAction();
+
+    // get the user and the movie the user is seeing
+    User currentUser = PlatformEngine.getEngine().getCurrentUser();
+    Movie selectedMovie = PlatformEngine.getEngine().getCurrentMoviesList().get(0);
+
+    String subscribedGenre = currentAction.getSubscribedGenre();
+
+    if (selectedMovie.getGenres().contains(subscribedGenre)) {
+      if (!currentUser.getSubscribedGenres().contains(subscribedGenre)) {
+        currentUser.getSubscribedGenres().add(subscribedGenre);
+      } else {
+        OutputHandler.updateOutput(ERROR_STATUS);
+      }
+    } else {
+      OutputHandler.updateOutput(ERROR_STATUS);
+    }
+  }
 }

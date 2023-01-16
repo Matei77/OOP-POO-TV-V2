@@ -96,4 +96,11 @@ public interface Page {
   default void logout() {
     OutputHandler.updateOutput(ERROR_STATUS);
   }
+
+  /**
+   * Subscribe to a certain genre.
+   */
+  default void subscribe() {
+    OutputHandler.updateOutput(ERROR_STATUS);
+  }
 }

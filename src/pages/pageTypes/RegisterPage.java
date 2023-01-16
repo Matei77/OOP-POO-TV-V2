@@ -3,6 +3,7 @@
 package pages.pageTypes;
 
 import data.User;
+import engine.AdminActions;
 import engine.PlatformActions;
 import engine.PlatformEngine;
 import input.CredentialsInput;
@@ -64,6 +65,9 @@ public final class RegisterPage implements Page {
     // add the user to the database
     ArrayList<User> usersDatabase = PlatformEngine.getEngine().getUsersDatabase();
     usersDatabase.add(newUser);
+
+    // add new user to observers, so they will be notified about updates on the platform
+    AdminActions.addObserver(newUser);
 
     // login the new user
     PlatformEngine.getEngine().setUsersDatabase(usersDatabase);

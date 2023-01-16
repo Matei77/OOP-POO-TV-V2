@@ -4,21 +4,11 @@ package engine;
 
 import input.ActionInput;
 import pages.Page;
+import utils.Utils;
 
 import java.util.ArrayList;
 
-import static utils.Constants.BUY_PREMIUM_ACCOUNT_FEATURE;
-import static utils.Constants.BUY_TOKENS_FEATURE;
-import static utils.Constants.CHANGE_PAGE;
-import static utils.Constants.FILTER_FEATURE;
-import static utils.Constants.LIKE_FEATURE;
-import static utils.Constants.LOGIN_FEATURE;
-import static utils.Constants.ON_PAGE;
-import static utils.Constants.PURCHASE_FEATURE;
-import static utils.Constants.RATE_FEATURE;
-import static utils.Constants.REGISTER_FEATURE;
-import static utils.Constants.SEARCH_FEATURE;
-import static utils.Constants.WATCH_FEATURE;
+import static utils.Constants.*;
 
 /**
  * Implements the execution of actions that can be performed on the platform.
@@ -42,8 +32,8 @@ public final class PlatformActions {
       String type = action.getType();
       if (type.equals(CHANGE_PAGE)) {
         currentPage.changePage(action.getPage());
-      } else if (type.equals(ON_PAGE)) {
 
+      } else if (type.equals(ON_PAGE)) {
         String feature = action.getFeature();
 
         switch (feature) {
@@ -57,8 +47,24 @@ public final class PlatformActions {
           case WATCH_FEATURE -> currentPage.watch();
           case LIKE_FEATURE -> currentPage.like();
           case RATE_FEATURE -> currentPage.rate();
+          case SUBSCRIBE_FEATURE -> currentPage.subscribe();
           default -> { }
         }
+      } else if (type.equals(DATABASE_TYPE)) {
+        String feature = action.getFeature();
+
+        switch (feature) {
+          case ADD_FEATURE -> AdminActions.addMovieToDatabase();
+          case DELETE_FEATURE -> AdminActions.deleteMovieFromDatabase();
+          default -> { }
+        }
+      } else if (type.equals(BACK_TYPE)) {
+
+      }
+    }
+    if (PlatformEngine.getEngine().getCurrentUser() != null) {
+      if (PlatformEngine.getEngine().getCurrentUser().getAccountType().equals(PREMIUM_ACCOUNT)) {
+        PlatformEngine.getEngine().getCurrentUser().giveRecommendation();
       }
     }
   }

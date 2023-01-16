@@ -2,6 +2,7 @@
 
 package utils;
 
+import engine.AdminActions;
 import engine.PlatformEngine;
 import input.Input;
 import input.MovieInput;
@@ -39,6 +40,7 @@ public final class Utils {
           inputUser.getCredentials().getPassword(), inputUser.getCredentials().getAccountType(),
           inputUser.getCredentials().getCountry(), inputUser.getCredentials().getBalance());
       usersDatabase.add(user);
+      AdminActions.addObserver(user);
     }
 
     // create movies database

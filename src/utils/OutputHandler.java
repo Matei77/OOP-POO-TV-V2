@@ -166,7 +166,7 @@ public final class OutputHandler {
     for (Notification notification : notifications) {
       ObjectNode notificationObjectNode = mapper.createObjectNode();
 
-      notificationObjectNode.put("movieName", notification.getMovieName());
+      notificationObjectNode.put("movieName", notification.getMovie().getName());
       notificationObjectNode.put("message", notification.getMessage());
 
       notificationsOutput.add(notificationObjectNode);

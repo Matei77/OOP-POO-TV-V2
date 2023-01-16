@@ -31,6 +31,8 @@ public final class Constants {
 
   public static final String CHANGE_PAGE = "change page";
   public static final String ON_PAGE = "on page";
+  public static final String DATABASE_TYPE = "database";
+  public static final String BACK_TYPE = "back";
 
   public static final String LOGIN_FEATURE = "login";
   public static final String REGISTER_FEATURE = "register";
@@ -42,9 +44,15 @@ public final class Constants {
   public static final String WATCH_FEATURE = "watch";
   public static final String LIKE_FEATURE = "like";
   public static final String RATE_FEATURE = "rate";
+  public static final String SUBSCRIBE_FEATURE = "subscribe";
+  public static final String ADD_FEATURE = "add";
+  public static final String DELETE_FEATURE = "delete";
 
   public static final int ERROR_STATUS = -1;
   public static final int SUCCESS_STATUS = 1;
+
+  public static final String ADD_MESSAGE = "ADD";
+  public static final String DELETE_MESSAGE = "DELETE";
 
   private Constants() { }
 }

@@ -1,20 +1,20 @@
 package data;
 
 public class Notification {
-  private String movieName;
+  private Movie movie;
   private String message;
 
-  public Notification(final String movieName, final String message) {
-    this.movieName = movieName;
+  public Notification(final Movie movie, final String message) {
+    this.movie = movie;
     this.message = message;
   }
 
-  public String getMovieName() {
-    return movieName;
+  public Movie getMovie() {
+    return movie;
   }
 
-  public void setMovieName(final String movieName) {
-    this.movieName = movieName;
+  public void setMovie(final Movie movie) {
+    this.movie = movie;
   }
 
   public String getMessage() {

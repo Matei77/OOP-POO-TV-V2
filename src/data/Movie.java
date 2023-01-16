@@ -13,7 +13,7 @@ import static utils.Constants.INITIAL_RATING;
  */
 public final class Movie {
   private String name;
-  private int year;
+  private String year;
   private int duration;
   private ArrayList<String> genres;
   private ArrayList<String> actors;
@@ -35,7 +35,7 @@ public final class Movie {
    * @param actors list of actors in movie
    * @param countriesBanned list countries the movie is banned in
    */
-  public Movie(final String name, final int year, final int duration,
+  public Movie(final String name, final String year, final int duration,
                final ArrayList<String> genres, final ArrayList<String> actors,
                final ArrayList<String> countriesBanned) {
     this.name = name;
@@ -71,11 +71,11 @@ public final class Movie {
     this.name = name;
   }
 
-  public int getYear() {
+  public String getYear() {
     return year;
   }
 
-  public void setYear(final int year) {
+  public void setYear(final String year) {
     this.year = year;
   }
 

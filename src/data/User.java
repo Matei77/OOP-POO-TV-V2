@@ -4,8 +4,7 @@ package data;
 
 import java.util.ArrayList;
 
-import static utils.Constants.FREE_MOVIES;
-import static utils.Constants.INITIAL_TOKENS;
+import static utils.Constants.*;
 
 /**
  * Represents a user.
@@ -25,6 +24,7 @@ public final class User {
   private ArrayList<Movie> likedMovies;
   private ArrayList<Movie> ratedMovies;
   private ArrayList<Notification> notifications;
+  private ArrayList<String> subscribedGenres;
 
   /**
    * Constructor for new user.
@@ -47,6 +47,48 @@ public final class User {
     likedMovies = new ArrayList<>();
     ratedMovies = new ArrayList<>();
     notifications = new ArrayList<>();
+    subscribedGenres = new ArrayList<>();
+  }
+
+  public void notifyObserver(Notification notification) {
+    if (notification.getMessage().equals(DELETE_MESSAGE)) {
+      if (this.purchasedMovies.contains(notification.getMovie())) {
+
+        this.notifications.add(notification);
+
+        if (this.accountType.equals(PREMIUM_ACCOUNT)) {
+          this.numFreePremiumMovies++;
+        } else {
+          this.tokensCount += 2;
+        }
+
+        this.purchasedMovies.remove(notification.getMovie());
+        this.watchedMovies.remove(notification.getMovie());
+        this.likedMovies.remove(notification.getMovie());
+        this.ratedMovies.remove(notification.getMovie());
+      }
+    } else if (notification.getMessage().equals(ADD_MESSAGE)) {
+      if (notification.getMovie().getCountriesBanned().contains(this.country)) {
+        return;
+      }
+
+      boolean hasGenre = false;
+      ArrayList<String> addedMovieGenres = notification.getMovie().getGenres();
+      for (String genre : addedMovieGenres) {
+        if (this.subscribedGenres.contains(genre)) {
+          hasGenre = true;
+          break;
+        }
+      }
+
+      if (hasGenre) {
+        this.notifications.add(notification);
+      }
+    }
+  }
+
+  public void giveRecommendation() {
+
   }
 
   public String getName() {
@@ -143,5 +185,13 @@ public final class User {
 
   public void setNotifications(final ArrayList<Notification> notifications) {
     this.notifications = notifications;
+  }
+
+  public ArrayList<String> getSubscribedGenres() {
+    return subscribedGenres;
+  }
+
+  public void setSubscribedGenres(final ArrayList<String> subscribedGenres) {
+    this.subscribedGenres = subscribedGenres;
   }
 }
