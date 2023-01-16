@@ -27,7 +27,7 @@ public final class AdminActions {
 
   public static void addMovieToDatabase() {
     MovieInput addedMovie = PlatformActions.getCurrentAction().getAddedMovie();
-    if (Utils.findMovie(addedMovie.getName()) != null) {
+    if (Utils.findMovieInDatabase(addedMovie.getName()) != null) {
       OutputHandler.updateOutput(ERROR_STATUS);
       return;
     }
