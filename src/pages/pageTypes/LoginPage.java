@@ -24,27 +24,28 @@ import static utils.Constants.SUCCESS_STATUS;
 public final class LoginPage implements Page {
 
   @Override
-  public void changePage(final String nextPage) {
+  public int changePage(final String nextPage) {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_OUT_HOMEPAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_OUT_HOMEPAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(REGISTER_PAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(REGISTER_PAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(LOGIN_PAGE)) {
-      return;
+      return SUCCESS_STATUS;
     }
 
     // output in case of error
     OutputHandler.updateOutput(ERROR_STATUS);
+    return ERROR_STATUS;
   }
 
   @Override
@@ -68,5 +69,10 @@ public final class LoginPage implements Page {
 
     // output results
     OutputHandler.updateOutput(SUCCESS_STATUS);
+  }
+
+  @Override
+  public String getPageName() {
+    return LOGIN_PAGE;
   }
 }

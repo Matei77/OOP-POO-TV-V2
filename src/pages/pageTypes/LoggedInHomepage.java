@@ -29,31 +29,32 @@ public class LoggedInHomepage implements Page {
    * @param nextPage the page to go to
    */
   @Override
-  public void changePage(final String nextPage) {
+  public int changePage(final String nextPage) {
 
     // change page according to its type
     if (nextPage.equals(MOVIES_PAGE)) {
       gotoMovies();
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(UPGRADES_PAGE)) {
       PageFactory pageFactory = new PageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(UPGRADES_PAGE));
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(LOGOUT_PAGE)) {
       logout();
-      return;
+      return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
-      return;
+      return SUCCESS_STATUS;
     }
 
     // output in case of error
     OutputHandler.updateOutput(ERROR_STATUS);
+    return ERROR_STATUS;
   }
 
   /**
@@ -72,6 +73,13 @@ public class LoggedInHomepage implements Page {
     // change the current page
     PageFactory pageFactory = new PageFactory();
     PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_OUT_HOMEPAGE));
+
+    PlatformEngine.getEngine().getChangePageInvoker().restart();
+  }
+
+  @Override
+  public String getPageName() {
+    return LOGGED_IN_HOMEPAGE;
   }
 
   /**

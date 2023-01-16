@@ -9,6 +9,7 @@ import input.MovieInput;
 import input.UserInput;
 import data.Movie;
 import data.User;
+import pages.changePageCommand.ChangePageInvoker;
 import pages.pageTypes.LoggedOutHomepage;
 
 import java.util.ArrayList;
@@ -24,6 +25,9 @@ public final class Utils {
     PlatformEngine.getEngine().setCurrentMoviesList(currentMoviesList);
     PlatformEngine.getEngine().setCurrentPage(new LoggedOutHomepage());
     PlatformEngine.getEngine().setCurrentUser(null);
+
+    ChangePageInvoker changePageInvoker = new ChangePageInvoker();
+    PlatformEngine.getEngine().setChangePageInvoker(changePageInvoker);
   }
 
   /**
@@ -75,6 +79,17 @@ public final class Utils {
     return null;
   }
 
+  public static Movie findMovieInDatabase (final String movieName) {
+    ArrayList<Movie> moviesDatabase = PlatformEngine.getEngine().getMoviesDatabase();
+
+    for (Movie movie : moviesDatabase) {
+      if (movie.getName().equals(movieName)) {
+        return movie;
+      }
+    }
+
+    return null;
+  }
   /**
    * Search a user by name in the database.
    *

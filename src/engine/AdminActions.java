@@ -48,8 +48,9 @@ public final class AdminActions {
   public static void deleteMovieFromDatabase() {
     String deletedMovie = PlatformActions.getCurrentAction().getDeletedMovie();
 
-    Movie movieToDelete = Utils.findMovie(deletedMovie);
+    Movie movieToDelete = Utils.findMovieInDatabase(deletedMovie);
     if (movieToDelete == null) {
+      // System.out.println("did not found " + deletedMovie);
       OutputHandler.updateOutput(ERROR_STATUS);
       return;
     }
