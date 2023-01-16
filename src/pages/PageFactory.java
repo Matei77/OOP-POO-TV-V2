@@ -19,10 +19,24 @@ import static utils.Constants.SEE_DETAILS_PAGE;
 import static utils.Constants.UPGRADES_PAGE;
 
 /**
- * Class that returns a new page of the selected type, using the Factory Design Pattern.
+ * Class that returns a new page of the selected type, using the Factory Design Pattern. The
+ * Singleton Pattern is also used to save memory because the PageFactory will be allocated only
+ * once.
  */
 public final class PageFactory {
+  private static PageFactory instance = null;
 
+  private PageFactory() { }
+
+  /**
+   * @return the PageFactory instance
+   */
+  public static PageFactory getPageFactory() {
+    if (instance == null) {
+      instance = new PageFactory();
+    }
+    return instance;
+  }
   /**
    * Return a new page of the specified type
    *

@@ -27,7 +27,7 @@ public final class UpgradesPage extends LoggedInHomepage {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
       return SUCCESS_STATUS;
     }

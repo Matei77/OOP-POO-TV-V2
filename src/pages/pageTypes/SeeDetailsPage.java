@@ -34,13 +34,13 @@ public final class SeeDetailsPage extends LoggedInHomepage {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
       return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(UPGRADES_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(UPGRADES_PAGE));
       return SUCCESS_STATUS;
     }

@@ -45,7 +45,7 @@ public final class ChangePageCommand implements Command {
     // check if the previous page is login or register, in which case we simply change the page
     // to the logged in homepage without redoing the login/register process
     if (previousPage.equals(LOGIN_PAGE) || previousPage.equals(REGISTER_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
 
     // go to the previous page otherwise

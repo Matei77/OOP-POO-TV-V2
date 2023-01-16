@@ -22,13 +22,13 @@ public final class LoggedOutHomepage implements Page {
 
     // change page according to its type
     if (nextPage.equals(LOGIN_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGIN_PAGE));
       return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(REGISTER_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(REGISTER_PAGE));
       return SUCCESS_STATUS;
     }

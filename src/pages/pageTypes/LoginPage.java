@@ -28,13 +28,13 @@ public final class LoginPage implements Page {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_OUT_HOMEPAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_OUT_HOMEPAGE));
       return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(REGISTER_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(REGISTER_PAGE));
       return SUCCESS_STATUS;
     }
@@ -53,7 +53,7 @@ public final class LoginPage implements Page {
     CredentialsInput credentials = PlatformActions.getCurrentAction().getCredentials();
     User loginUser = Utils.findUser(credentials.getName());
 
-    PageFactory pageFactory = new PageFactory();
+    PageFactory pageFactory = PageFactory.getPageFactory();
 
     // check if the user doesn't exist or his password doesn't match
     if (loginUser == null || !loginUser.getPassword().equals(credentials.getPassword())) {

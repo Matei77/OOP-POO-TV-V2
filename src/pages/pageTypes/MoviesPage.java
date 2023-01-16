@@ -30,7 +30,7 @@ public final class MoviesPage extends LoggedInHomepage {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_IN_HOMEPAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
       return SUCCESS_STATUS;
     }
@@ -50,7 +50,7 @@ public final class MoviesPage extends LoggedInHomepage {
     }
 
     if (nextPage.equals(UPGRADES_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(UPGRADES_PAGE));
       return SUCCESS_STATUS;
     }
@@ -77,7 +77,7 @@ public final class MoviesPage extends LoggedInHomepage {
     PlatformEngine.getEngine().setCurrentMoviesList(currentMoviesList);
 
     // update the current page
-    PageFactory pageFactory = new PageFactory();
+    PageFactory pageFactory = PageFactory.getPageFactory();
     PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(SEE_DETAILS_PAGE));
 
     // output results

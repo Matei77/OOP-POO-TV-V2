@@ -28,13 +28,13 @@ public final class RegisterPage implements Page {
 
     // change page according to its type
     if (nextPage.equals(LOGGED_OUT_HOMEPAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_OUT_HOMEPAGE));
       return SUCCESS_STATUS;
     }
 
     if (nextPage.equals(LOGIN_PAGE)) {
-      PageFactory pageFactory = new PageFactory();
+      PageFactory pageFactory = PageFactory.getPageFactory();
       PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGIN_PAGE));
       return SUCCESS_STATUS;
     }
@@ -74,7 +74,7 @@ public final class RegisterPage implements Page {
     PlatformEngine.getEngine().setUsersDatabase(usersDatabase);
     PlatformEngine.getEngine().setCurrentUser(newUser);
 
-    PageFactory pageFactory = new PageFactory();
+    PageFactory pageFactory = PageFactory.getPageFactory();
     PlatformEngine.getEngine().setCurrentPage(pageFactory.getPage(LOGGED_IN_HOMEPAGE));
 
     // output the success of the action
