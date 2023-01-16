@@ -65,11 +65,6 @@ public final class SeeDetailsPage extends LoggedInHomepage {
   }
 
   @Override
-  public String getPageName() {
-    return SEE_DETAILS_PAGE;
-  }
-
-  @Override
   public void purchase() {
     // get the user and the movie the user wants to purchase
     User currentUser = PlatformEngine.getEngine().getCurrentUser();
@@ -218,14 +213,23 @@ public final class SeeDetailsPage extends LoggedInHomepage {
 
     String subscribedGenre = currentAction.getSubscribedGenre();
 
+    // check if the movie contains the selected genre
     if (selectedMovie.getGenres().contains(subscribedGenre)) {
+
+      // check if the user has already subscribed to the genre
       if (!currentUser.getSubscribedGenres().contains(subscribedGenre)) {
         currentUser.getSubscribedGenres().add(subscribedGenre);
+
       } else {
         OutputHandler.updateOutput(ERROR_STATUS);
       }
     } else {
       OutputHandler.updateOutput(ERROR_STATUS);
     }
+  }
+
+  @Override
+  public String getPageName() {
+    return SEE_DETAILS_PAGE;
   }
 }

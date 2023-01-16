@@ -15,7 +15,13 @@ import utils.comparators.RatingMovieComparator;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static utils.Constants.*;
+import static utils.Constants.ERROR_STATUS;
+import static utils.Constants.LOGGED_IN_HOMEPAGE;
+import static utils.Constants.LOGOUT_PAGE;
+import static utils.Constants.MOVIES_PAGE;
+import static utils.Constants.SEE_DETAILS_PAGE;
+import static utils.Constants.SUCCESS_STATUS;
+import static utils.Constants.UPGRADES_PAGE;
 
 public final class MoviesPage extends LoggedInHomepage {
 
@@ -52,11 +58,6 @@ public final class MoviesPage extends LoggedInHomepage {
     // output in case of error
     OutputHandler.updateOutput(ERROR_STATUS);
     return ERROR_STATUS;
-  }
-
-  @Override
-  public String getPageName() {
-    return MOVIES_PAGE;
   }
 
   private int seeDetails() {
@@ -180,5 +181,10 @@ public final class MoviesPage extends LoggedInHomepage {
 
     // output results
     OutputHandler.updateOutput(SUCCESS_STATUS);
+  }
+
+  @Override
+  public String getPageName() {
+    return MOVIES_PAGE;
   }
 }

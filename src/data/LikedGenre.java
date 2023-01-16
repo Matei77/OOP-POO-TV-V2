@@ -1,10 +1,12 @@
 package data;
 
-import java.util.ArrayList;
-
 import static utils.Constants.INITIAL_LIKES;
 
-public class LikedGenre {
+/**
+ * Represents a genre that a user likes and stores the name of the genre and the number of likes
+ * the user gave to movies from this specific genre.
+ */
+public final class LikedGenre {
   private String name;
   private int likes = INITIAL_LIKES;
 
@@ -12,20 +14,11 @@ public class LikedGenre {
     this.setName(name);
   }
 
-  public boolean isIn(ArrayList<LikedGenre> obj) {
-    for (LikedGenre likedGenre : obj) {
-      if (this.getName().equals(likedGenre.getName())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
@@ -33,7 +26,7 @@ public class LikedGenre {
     return likes;
   }
 
-  public void setLikes(int likes) {
+  public void setLikes(final int likes) {
     this.likes = likes;
   }
 }

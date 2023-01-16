@@ -77,11 +77,6 @@ public class LoggedInHomepage implements Page {
     PlatformEngine.getEngine().getChangePageInvoker().restart();
   }
 
-  @Override
-  public String getPageName() {
-    return LOGGED_IN_HOMEPAGE;
-  }
-
   /**
    * Go to the movies page
    */
@@ -109,5 +104,13 @@ public class LoggedInHomepage implements Page {
 
     // output results
     OutputHandler.updateOutput(SUCCESS_STATUS);
+  }
+
+  /**
+   * @return the name of the page.
+   */
+  @Override
+  public String getPageName() {
+    return LOGGED_IN_HOMEPAGE;
   }
 }

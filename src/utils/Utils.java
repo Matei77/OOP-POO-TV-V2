@@ -62,10 +62,10 @@ public final class Utils {
   }
 
   /**
-   * Search a movie by name in the database.
+   * Search a movie by name in the list of movies the user is seen on the screen.
    *
    * @param movieName the name of the movie searched
-   * @return the Movie instance from the database if found or null otherwise
+   * @return the Movie instance from the movies list if found or null otherwise
    */
   public static Movie findMovie(final String movieName) {
     ArrayList<Movie> currentMoviesList = PlatformEngine.getEngine().getCurrentMoviesList();
@@ -79,7 +79,13 @@ public final class Utils {
     return null;
   }
 
-  public static Movie findMovieInDatabase (final String movieName) {
+  /**
+   * Search a movie by name in the database.
+   *
+   * @param movieName the name of the movie searched
+   * @return the Movie instance from the database if found or null otherwise
+   */
+  public static Movie findMovieInDatabase(final String movieName) {
     ArrayList<Movie> moviesDatabase = PlatformEngine.getEngine().getMoviesDatabase();
 
     for (Movie movie : moviesDatabase) {

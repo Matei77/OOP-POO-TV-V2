@@ -7,7 +7,11 @@ import pages.Page;
 import pages.PageFactory;
 import utils.OutputHandler;
 
-import static utils.Constants.*;
+import static utils.Constants.ERROR_STATUS;
+import static utils.Constants.LOGGED_OUT_HOMEPAGE;
+import static utils.Constants.LOGIN_PAGE;
+import static utils.Constants.REGISTER_PAGE;
+import static utils.Constants.SUCCESS_STATUS;
 
 /**
  * Represents the homepage when the user is logged out.

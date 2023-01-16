@@ -1,12 +1,12 @@
 package utils.comparators;
 
 import data.Movie;
-import engine.PlatformActions;
-import input.ActionInput;
-import input.SortInput;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for the number of likes of a movie
+ */
 public final class LikesMovieComparator implements Comparator<Movie> {
 
   @Override

@@ -8,7 +8,14 @@ import engine.PlatformEngine;
 import pages.PageFactory;
 import utils.OutputHandler;
 
-import static utils.Constants.*;
+import static utils.Constants.ERROR_STATUS;
+import static utils.Constants.LOGGED_IN_HOMEPAGE;
+import static utils.Constants.LOGOUT_PAGE;
+import static utils.Constants.MOVIES_PAGE;
+import static utils.Constants.PREMIUM_ACCOUNT;
+import static utils.Constants.PREMIUM_ACCOUNT_PRICE;
+import static utils.Constants.SUCCESS_STATUS;
+import static utils.Constants.UPGRADES_PAGE;
 
 /**
  * Represents the page the user sees when he wants to upgrade his account type or buy tokens.
@@ -46,11 +53,6 @@ public final class UpgradesPage extends LoggedInHomepage {
   }
 
   @Override
-  public String getPageName() {
-    return UPGRADES_PAGE;
-  }
-
-  @Override
   public void buyPremium() {
     User currentUser = PlatformEngine.getEngine().getCurrentUser();
 
@@ -85,5 +87,10 @@ public final class UpgradesPage extends LoggedInHomepage {
     // update user's balance and number of tokens
     currentUser.setBalance(currentUser.getBalance() - count);
     currentUser.setTokensCount(currentUser.getTokensCount() + count);
+  }
+
+  @Override
+  public String getPageName() {
+    return UPGRADES_PAGE;
   }
 }

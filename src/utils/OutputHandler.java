@@ -63,6 +63,10 @@ public final class OutputHandler {
     output.addAll(List.of(outputNode));
   }
 
+  /**
+   * Output for the notification containing the movie recommendation for the last logged-in premium
+   * user
+   */
   public static void finalNotification() {
     ObjectMapper mapper = new ObjectMapper();
     ObjectNode outputNode = mapper.createObjectNode();

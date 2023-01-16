@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 public final class Main {
-  static int testNr = 1;
-
   private Main() { }
 
   /**
@@ -45,6 +43,5 @@ public final class Main {
 
     ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
     objectWriter.writeValue(new File(outputFile), output);
-    objectWriter.writeValue(new File("test" + testNr++), output);
   }
 }

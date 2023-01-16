@@ -5,13 +5,28 @@ package engine;
 import input.ActionInput;
 import pages.Page;
 import pages.changePageCommand.ChangePageCommand;
-import pages.changePageCommand.ChangePageInvoker;
 import pages.changePageCommand.Command;
-import utils.Utils;
 
 import java.util.ArrayList;
 
-import static utils.Constants.*;
+import static utils.Constants.ADD_FEATURE;
+import static utils.Constants.BACK_TYPE;
+import static utils.Constants.BUY_PREMIUM_ACCOUNT_FEATURE;
+import static utils.Constants.BUY_TOKENS_FEATURE;
+import static utils.Constants.CHANGE_PAGE;
+import static utils.Constants.DATABASE_TYPE;
+import static utils.Constants.DELETE_FEATURE;
+import static utils.Constants.FILTER_FEATURE;
+import static utils.Constants.LIKE_FEATURE;
+import static utils.Constants.LOGIN_FEATURE;
+import static utils.Constants.ON_PAGE;
+import static utils.Constants.PREMIUM_ACCOUNT;
+import static utils.Constants.PURCHASE_FEATURE;
+import static utils.Constants.RATE_FEATURE;
+import static utils.Constants.REGISTER_FEATURE;
+import static utils.Constants.SEARCH_FEATURE;
+import static utils.Constants.SUBSCRIBE_FEATURE;
+import static utils.Constants.WATCH_FEATURE;
 
 /**
  * Implements the execution of actions that can be performed on the platform.
@@ -34,6 +49,7 @@ public final class PlatformActions {
 
       String type = action.getType();
       if (type.equals(CHANGE_PAGE)) {
+        // Call the invoker to execute the new change page command
         Command changePageCommand = new ChangePageCommand();
         PlatformEngine.getEngine().getChangePageInvoker().execute(changePageCommand);
 
@@ -66,6 +82,9 @@ public final class PlatformActions {
         PlatformEngine.getEngine().getChangePageInvoker().undo();
       }
     }
+
+    // check if there is a logged-in user and if their account is premium to give them a
+    // recommendation
     if (PlatformEngine.getEngine().getCurrentUser() != null) {
       if (PlatformEngine.getEngine().getCurrentUser().getAccountType().equals(PREMIUM_ACCOUNT)) {
         PlatformEngine.getEngine().getCurrentUser().giveRecommendation();

@@ -15,6 +15,9 @@ public interface Page {
    * Go to another page.
    *
    * @param nextPage the page to go to
+   * @return whether the action happened successfully or not.
+   *        ERROR_STATUS (-1) for false;
+   *        SUCCESS_STATUS (1) for true;
    */
   default int changePage(String nextPage) {
     OutputHandler.updateOutput(ERROR_STATUS);
@@ -105,5 +108,8 @@ public interface Page {
     OutputHandler.updateOutput(ERROR_STATUS);
   }
 
-  public String getPageName();
+  /**
+   * @return the name of the page.
+   */
+  String getPageName();
 }

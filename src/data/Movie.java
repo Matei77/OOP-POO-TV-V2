@@ -58,6 +58,9 @@ public final class Movie {
     recalculateRating();
   }
 
+  /**
+   * recalculate the rating of the movie.
+   */
   public void recalculateRating() {
     double ratingSum = 0;
     for (Rating userRating : this.ratings) {
